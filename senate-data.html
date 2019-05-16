@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    
+
+    <body>
+         <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">TGIF</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="../Taks 2/home-starter-page.html">Home</a></li>
+              <li class="active" href="#">Congress 113</a></li>
+                <ul class="nav navbar-nav" >
+                  <li class="active"><a href="../Taks 2/senate-starter-page.html">Senate</a></li>
+                  <li class="active"><a href="../Taks 2/house-starter-page.html">House</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>        
+  
+
+        <header>            
+            <div>
+            	<p>https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment</p>
+
+            </div>
+        </header>
+      
+        <div>
+            
+                  
+
+<!-- CREAR UN PRE CON UN ID -->
+<table id="senate-data">
+
+
+  <script src="congress-113-senate.js"></script>
+
+  <script type="text/javascript">
+
+  var str = JSON.stringify(data, null, 2);
+  var valor = JSON.parse(str)
+  var pro = document.getElementById("senate-data")
+
+  var tbody= document.createElement("tbody")
+  //pro.appendChild(tbody)
+
+   var tabla="<thead class='thead-dark'><tr><th>Full Name</th><th>Party</th><th>State</th><th>Senority</th><th>Percentage of votes</th></tr></thead>"
+
+
+
+   var arreglo = valor.results[0].members
+   agregarVotantes(arreglo)
+   function agregarVotantes(arreglo)
+   {
+
+
+     for (let i=0;i<arreglo.length;i++)
+     {
+      tabla +="<tr>"
+       //console.log(array[i].last_name+array[i].first_name+array[i].middle_name)
+       if(arreglo[i].last_name!=null && arreglo[i].first_name!=null && arreglo[i].middle_name!=null)
+       {
+        tabla+="<td><a href='"+arreglo[i].url+"'>"+arreglo[i].last_name+" "+arreglo[i].first_name+" "+arreglo[i].middle_name+"</a></td>"
+       }
+      else if(arreglo[i].middle_name==null)
+       {
+         tabla+="<td><a href='"+arreglo[i].url+"'>"+arreglo[i].last_name+" "+arreglo[i].first_name+" "+"..."+"</a></td>"
+       }
+       tabla+="<td>"+" "+arreglo[i].party+" "+"</td>"
+      tabla+="<td>"+" "+arreglo[i].state+" "+"</td>"
+       tabla+="<td>"+" "+arreglo[i].seniority+" "+"</td>"
+       tabla+="<td>"+" "+arreglo[i].votes_with_party_pct+"%"+" "+"</td></tr>"
+
+     }
+   }
+ //tbody.appendChild(tabla)
+ //pro.appendChild(tbody)
+  pro.innerHTML=tabla
+
+  </script>
+
+</table>
+</body>
+</html>
+
+
+
+ 
